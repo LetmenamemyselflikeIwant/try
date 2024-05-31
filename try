@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communication Website</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+        }
+        .header {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px;
+            background-color: #e2e8f0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .logout-button {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .logout-button:hover {
+            background-color: #ff4d4d;
+        }
+        .message-area {
+            width: 60%;
+            margin-bottom: 10px;
+            border: 1px solid #cbd5e0;
+            padding: 10px;
+            height: 70%;
+            overflow-y: auto;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .footer {
+            width: 60%;
+            display: flex;
+            align-items: center;
+            background-color: #e2e8f0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .footer textarea {
+            width: 100%;
+            height: 40px;
+            resize: none;
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 5px;
+            margin-right: 10px;
+            transition: border-color 0.3s ease;
+        }
+        .footer textarea:focus {
+            border-color: #a0aec0;
+            outline: none;
+        }
+        .send-button {
+            background-color: #48bb78;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .send-button:hover {
+            background-color: #38a169;
+        }
+        .message-area div {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #edf2f7;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button class="logout-button">Log Out</button>
+    </div>
+    <div class="message-area" id="message-area"></div>
+    <div class="footer">
+        <textarea id="message-input"></textarea>
+        <button class="send-button" onclick="sendMessage()">Send</button>
+    </div>
+    
+    <script>
+        function sendMessage() {
+            const messageArea = document.getElementById('message-area');
+            const messageInput = document.getElementById('message-input');
+            const message = messageInput.value
+
+            if (message) {
+                const messageDiv = document.createElement('div');
+                messageDiv.textContent = message;
+                messageArea.appendChild(messageDiv);
+                messageInput.value = '';
+                messageArea.scrollTop = messageArea.scrollHeight;
+            }
+        }
+
+        document.addEventListener('keyup',(e)=>{
+            if(e.key == 'Enter'){
+                sendMessage()
+            }
+        })
+    </script>
+</body>
+</html>
